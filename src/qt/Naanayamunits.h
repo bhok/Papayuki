@@ -7,10 +7,10 @@
 /** Naanayam unit definitions. Encapsulates parsing and formatting
    and serves as list model for drop-down selection boxes.
 */
-class NaanayamUnits: public QAbstractListModel
+class PapayukiUnits: public QAbstractListModel
 {
 public:
-    explicit NaanayamUnits(QObject *parent);
+    explicit PapayukiUnits(QObject *parent);
 
     /** Naanayam units.
       @note Source: https://en.bitcoin.it/wiki/Units . Please add only sensible ones
@@ -59,8 +59,8 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
     ///@}
 private:
-    QList<NaanayamUnits::Unit> unitlist;
+    QList<PapayukiUnits::Unit> unitlist;
 };
-typedef NaanayamUnits::Unit NaanayamUnit;
+typedef PapayukiUnits::Unit NaanayamUnit;
 
 #endif // BOUNTYCOINUNITS_H
