@@ -61,6 +61,6 @@ public:
 private:
     QList<PapayukiUnits::Unit> unitlist;
 };
-typedef PapayukiUnits::Unit NaanayamUnit;
+typedef PapayukiUnits::Unit PapayukiUnit;
 
 #endif // BOUNTYCOINUNITS_H
