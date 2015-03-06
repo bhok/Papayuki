@@ -1,6 +1,6 @@
-#include "Naanayamamountfield.h"
+#include "Papayukiamountfield.h"
 #include "qvaluecombobox.h"
-#include "Naanayamunits.h"
+#include "Papayukiunits.h"
 
 #include "guiconstants.h"
 
@@ -14,7 +14,7 @@
 #include <QApplication>
 #include <qmath.h>
 
-NaanayamAmountField::NaanayamAmountField(QWidget *parent):
+PapayukiAmountField::PapayukiAmountField(QWidget *parent):
         QWidget(parent), amount(0), currentUnit(-1)
 {
     amount = new QDoubleSpinBox(this);
@@ -45,7 +45,7 @@ NaanayamAmountField::NaanayamAmountField(QWidget *parent):
     unitChanged(unit->currentIndex());
 }
 
-void NaanayamAmountField::setText(const QString &text)
+void PapayukiAmountField::setText(const QString &text)
 {
     if (text.isEmpty())
         amount->clear();
@@ -53,18 +53,18 @@ void NaanayamAmountField::setText(const QString &text)
         amount->setValue(text.toDouble());
 }
 
-void NaanayamAmountField::clear()
+void PapayukiAmountField::clear()
 {
     amount->clear();
     unit->setCurrentIndex(0);
 }
 
-bool NaanayamAmountField::validate()
+bool PapayukiAmountField::validate()
 {
     bool valid = true;
     if (amount->value() == 0.0)
         valid = false;
-    if (valid && !NaanayamUnits::parse(currentUnit, text(), 0))
+    if (valid && !PapayukiUnits::parse(currentUnit, text(), 0))
         valid = false;
 
     setValid(valid);
@@ -72,7 +72,7 @@ bool NaanayamAmountField::validate()
     return valid;
 }
 
-void NaanayamAmountField::setValid(bool valid)
+void PapayukiAmountField::setValid(bool valid)
 {
     if (valid)
         amount->setStyleSheet("");
@@ -80,7 +80,7 @@ void NaanayamAmountField::setValid(bool valid)
         amount->setStyleSheet(STYLE_INVALID);
 }
 
-QString NaanayamAmountField::text() const
+QString PapayukiAmountField::text() const
 {
     if (amount->text().isEmpty())
         return QString();
@@ -88,7 +88,7 @@ QString NaanayamAmountField::text() const
         return amount->text();
 }
 
-bool NaanayamAmountField::eventFilter(QObject *object, QEvent *event)
+bool PapayukiAmountField::eventFilter(QObject *object, QEvent *event)
 {
     if (event->type() == QEvent::FocusIn)
     {
@@ -109,16 +109,16 @@ bool NaanayamAmountField::eventFilter(QObject *object, QEvent *event)
     return QWidget::eventFilter(object, event);
 }
 
-QWidget *NaanayamAmountField::setupTabChain(QWidget *prev)
+QWidget *PapayukiAmountField::setupTabChain(QWidget *prev)
 {
     QWidget::setTabOrder(prev, amount);
     return amount;
 }
 
-qint64 NaanayamAmountField::value(bool *valid_out) const
+qint64 PapayukiAmountField::value(bool *valid_out) const
 {
     qint64 val_out = 0;
-    bool valid = NaanayamUnits::parse(currentUnit, text(), &val_out);
+    bool valid = PapayukiUnits::parse(currentUnit, text(), &val_out);
     if(valid_out)
     {
         *valid_out = valid;
@@ -126,18 +126,18 @@ qint64 NaanayamAmountField::value(bool *valid_out) const
     return val_out;
 }
 
-void NaanayamAmountField::setValue(qint64 value)
+void PapayukiAmountField::setValue(qint64 value)
 {
-    setText(NaanayamUnits::format(currentUnit, value));
+    setText(PapayukiUnits::format(currentUnit, value));
 }
 
-void NaanayamAmountField::unitChanged(int idx)
+void PapayukiAmountField::unitChanged(int idx)
 {
     // Use description tooltip for current unit for the combobox
     unit->setToolTip(unit->itemData(idx, Qt::ToolTipRole).toString());
 
     // Determine new unit ID
-    int newUnit = unit->itemData(idx, NaanayamUnits::UnitRole).toInt();
+    int newUnit = unit->itemData(idx, PapayukiUnits::UnitRole).toInt();
 
     // Parse current value and convert to new unit
     bool valid = false;
@@ -146,8 +146,8 @@ void NaanayamAmountField::unitChanged(int idx)
     currentUnit = newUnit;
 
     // Set max length after retrieving the value, to prevent truncation
-    amount->setDecimals(NaanayamUnits::decimals(currentUnit));
-    amount->setMaximum(qPow(10, NaanayamUnits::amountDigits(currentUnit)) - qPow(10, -amount->decimals()));
+    amount->setDecimals(PapayukiUnits::decimals(currentUnit));
+    amount->setMaximum(qPow(10, PapayukiUnits::amountDigits(currentUnit)) - qPow(10, -amount->decimals()));
 
     if(valid)
     {
@@ -162,7 +162,7 @@ void NaanayamAmountField::unitChanged(int idx)
     setValid(true);
 }
 
-void NaanayamAmountField::setDisplayUnit(int newUnit)
+void PapayukiAmountField::setDisplayUnit(int newUnit)
 {
     unit->setValue(newUnit);
 }
