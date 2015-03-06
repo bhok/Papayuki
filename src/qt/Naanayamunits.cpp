@@ -1,23 +1,23 @@
-#include "Naanayamunits.h"
+#include "Papayukiunits.h"
 
 #include <QStringList>
 
-NaanayamUnits::NaanayamUnits(QObject *parent):
+PapayukiUnits::PapayukiUnits(QObject *parent):
         QAbstractListModel(parent),
         unitlist(availableUnits())
 {
 }
 
-QList<NaanayamUnits::Unit> NaanayamUnits::availableUnits()
+QList<PapayukiUnits::Unit> PapayukiUnits::availableUnits()
 {
-    QList<NaanayamUnits::Unit> unitlist;
+    QList<PapayukiUnits::Unit> unitlist;
     unitlist.append(BTC);
     unitlist.append(mBTC);
     unitlist.append(uBTC);
     return unitlist;
 }
 
-bool NaanayamUnits::valid(int unit)
+bool PapayukiUnits::valid(int unit)
 {
     switch(unit)
     {
@@ -30,29 +30,29 @@ bool NaanayamUnits::valid(int unit)
     }
 }
 
-QString NaanayamUnits::name(int unit)
+QString PapayukiUnits::name(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("NYM");
-    case mBTC: return QString("mNYM");
-    case uBTC: return QString::fromUtf8("μNYM");
+    case BTC: return QString("PPYK");
+    case mBTC: return QString("mPPYK");
+    case uBTC: return QString::fromUtf8("μPPYK");
     default: return QString("???");
     }
 }
 
-QString NaanayamUnits::description(int unit)
+QString PapayukiUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("Naanayam");
-    case mBTC: return QString("Milli-Naanayam (1 / 1,000)");
-    case uBTC: return QString("Micro-Naanayam (1 / 1,000,000)");
+    case BTC: return QString("Papayuki");
+    case mBTC: return QString("Milli-Papayuki (1 / 1,000)");
+    case uBTC: return QString("Micro-Papayuki (1 / 1,000,000)");
     default: return QString("???");
     }
 }
 
-qint64 NaanayamUnits::factor(int unit)
+qint64 PapayukiUnits::factor(int unit)
 {
     switch(unit)
     {
@@ -63,7 +63,7 @@ qint64 NaanayamUnits::factor(int unit)
     }
 }
 
-int NaanayamUnits::amountDigits(int unit)
+int PapayukiUnits::amountDigits(int unit)
 {
     switch(unit)
     {
