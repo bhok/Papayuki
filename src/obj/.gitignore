@@ -1,7 +1,7 @@
 src/*.exe
-src/Naanayam
-src/Naanayamd
-src/test_Naanayam
+src/Papayuki
+src/Papayukid
+src/test_Papayuki
 src/build.h
 .*.swp
 *.*~*
@@ -10,12 +10,12 @@ src/build.h
 *.orig
 *.o
 *.patch
-.Naanayam
-.Naanayam
+.Papayuki
+.Papayuki
 #compilation and Qt preprocessor part
 *.qm
 Makefile
-Naanayam-qt
+Papayuki-qt
 #resources cpp
 qrc_*.cpp
 #qt creator
