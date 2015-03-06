@@ -15,8 +15,8 @@
 #include <string>
 #include "uint256.h"
 
-const int DEF_PROT=14445;
-const int DEF_RPCPORT=14444;
+const int DEF_PROT=9445;
+const int DEF_RPCPORT=9444;
 const int DEF_TESTNET_PORT=24445;
 const int DEF_TESTNET_RPCPORT=24444;
 
